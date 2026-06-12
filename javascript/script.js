@@ -13,7 +13,7 @@ const form = document.getElementById("tableForm");
 const resetButton = document.getElementById("resetBtn");
 const tableDisplay = document.getElementById("tableDisplay");
 
-// Constants for validation
+// Constants
 const minNumber = -50;
 const maxNumber = 50;
 
@@ -79,9 +79,8 @@ function generateUserTable(minX, maxX, minY, maxY) {
 	tableDisplay.innerHTML = table;
 }
 
-/*
-reset form to default values 1 and 5 
-*/
+
+// reset form to default values 1 and 5 
 function resetUserInputs() {
 	document.getElementById("minX").value = "1";
 	document.getElementById("maxX").value = "5";
@@ -256,7 +255,6 @@ $(document).ready(function () {
 
 			// Generate the table
 			generateUserTable(minX, maxX, minY, maxY);
-
 			clearError();
 		},
 
