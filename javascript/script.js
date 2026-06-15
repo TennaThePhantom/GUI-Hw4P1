@@ -12,6 +12,8 @@ Copyright (c) 2026 by Tennessee Foster. All rights reserved.
 const form = document.getElementById("tableForm");
 const resetButton = document.getElementById("resetBtn");
 const tableDisplay = document.getElementById("tableDisplay");
+const errorArea = document.getElementById("errorArea");  
+
 
 // Constants
 const minNumber = -50;
@@ -23,7 +25,7 @@ function showError(message) {
 	$(errorArea).html('<div class="error-message">⚠️ ' + message + "</div>");
 	setTimeout(function () {
 		$(errorArea).html("");
-	}, 5000);
+	}, 3000);
 }
 
 // Clear error message
@@ -196,7 +198,7 @@ $(document).ready(function () {
 		},
 
 		// simple error messages placement below user input for each form
-		errorPlacementMessage: function (error, element) {
+		errorPlacement: function (error, element) {
 			// Insert error message after the input
 			if (element.closest(".input-group").length) {
 				error.insertAfter(element.closest(".input-group"));
@@ -206,7 +208,7 @@ $(document).ready(function () {
 			error.addClass("text-danger small d-block mt-1");
 		},
 
-		// Custom submit handler
+		// submit handler jquery validation
 		submitHandler: function (form) {
 			// Get values from user input
 			let minX = parseInt($("#minX").val());
@@ -214,7 +216,7 @@ $(document).ready(function () {
 			let minY = parseInt($("#minY").val());
 			let maxY = parseInt($("#maxY").val());
 
-			// if user leaves a field blank display error
+			// double check if user leaves a field blank display error in case jquery validation doesn't load in properly for some reason
 			if (isAnyFieldBlank(minX, maxX, minY, maxY)) {
 				showError(
 					`Blank Number Error: Please enter valid numbers in all fields (no blank fields)`,
@@ -222,7 +224,7 @@ $(document).ready(function () {
 				return;
 			}
 
-			// Double-check user input range before generating table
+			// double check user input range before generating table 
 			if (
 				minX < minNumber ||
 				minX > maxNumber ||
@@ -249,7 +251,7 @@ $(document).ready(function () {
 			// check table size
 			let sizeCheck = checkTableSize(minX, maxX, minY, maxY);
 			if (!sizeCheck.valid) {
-				showError(minMaxCheck.message);
+				showError(sizeCheck.message);
 				return;
 			}
 
@@ -259,12 +261,12 @@ $(document).ready(function () {
 		},
 
 		// Show errors as user types
-		onkeyup: function (error) {
-			$(error).valid();
+		onkeyup: function (elementError) {
+			$(elementError).valid();
 		},
 
-		onfocusout: function (error) {
-			$(error).valid();
+		onfocusout: function (elementError) {
+			$(elementError).valid();
 		},
 	});
 });
