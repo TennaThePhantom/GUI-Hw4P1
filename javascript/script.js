@@ -1,6 +1,6 @@
 /*
 File: script.js
-Student Name: Tennessee Foster
+Name: Tennessee Foster
 Assignment: HW4 Part 1 - jQuery Validation Plugin
 Email: tennessee_foster@student.uml.edu
 Date: 6/11/2026
