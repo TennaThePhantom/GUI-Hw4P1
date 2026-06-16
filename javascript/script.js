@@ -99,13 +99,13 @@ function checkMinMax(minX, maxX, minY, maxY) {
 	if (minX > maxX) {
 		return {
 			valid: false,
-			message: "Horizontal: Min must be less than or equal to Max",
+			message: "Horizontal Row: Min must be less than or equal to Max",
 		};
 	}
 	if (minY > maxY) {
 		return {
 			valid: false,
-			message: "Vertical: Min must be less than or equal to Max",
+			message: "Vertical Column: Min must be less than or equal to Max",
 		};
 	}
 	return { valid: true, message: "" };
